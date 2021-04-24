@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def hello_world():
+def mock():
     total_lots = 50
     free_lots = random.randint(30, 40)
     taken_lots = total_lots - free_lots
