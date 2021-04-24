@@ -17,8 +17,8 @@ def mock():
     )
 
 
-@app.route('/mask_image', methods=['POST'])
-def mask_image():
+@app.route('/count_lots', methods=['POST'])
+def count_lots():
     try:
         file = request.files['file']
         return secure_filename(file.filename)
