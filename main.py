@@ -1,8 +1,10 @@
+import json
 import os.path
 import caffe
+import cv2
+import numpy
 
 from flask import Flask, jsonify, request
-from werkzeug.utils import secure_filename
 import random
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -38,9 +40,17 @@ def mock():
 @app.route('/count_lots', methods=['POST'])
 def count_lots():
     try:
-        file = request.files['file']
-        out = net.forward(data=file)
-        print(out)
+        file = request.files['file'].read()
+        npimage = numpy.fromstring(file, numpy.uint8)
+        file = cv2.imdecode(npimage, 1)
+        resized = cv2.resize(file, (227, 227))
+        blob = cv2.dnn.blobFromImage(resized, 1, (227, 227))
+        blob = blob.astype(numpy.uint8)
+
+        out = net.forward_all(data=blob)
+        return jsonify(
+            str(out)
+        )
 
     except Exception as e:
         print(str(e))
