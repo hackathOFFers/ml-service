@@ -49,7 +49,8 @@ def check_lot():
 
         out = net.forward_all(data=blob)
         return jsonify(
-            str(out)
+                probability_free=out['prob'][0][0].item(),
+                probability_reserved=out['prob'][0][1].item()
         )
 
     except Exception as e:
