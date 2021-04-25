@@ -37,8 +37,8 @@ def mock():
     )
 
 
-@app.route('/count_lots', methods=['POST'])
-def count_lots():
+@app.route('/check_lot', methods=['POST'])
+def check_lot():
     try:
         file = request.files['file'].read()
         npimage = numpy.fromstring(file, numpy.uint8)
