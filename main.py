@@ -8,7 +8,7 @@ from flask import Flask, jsonify, request
 import random
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-MODEL_FILE = BASE_DIR + "/model/snapshot_iter_942.caffemodel"
+MODEL_FILE = BASE_DIR + "/model/snapshot.caffemodel"
 DEPLOY_FILE = BASE_DIR + "/model/deploy.prototxt"
 MEAN_FILE = None
 LABELS_FILE = None
